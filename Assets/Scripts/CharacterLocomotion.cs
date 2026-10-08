@@ -13,7 +13,7 @@ public class CharacterLocomotion : MonoBehaviour
     private InputActionAsset inputAsset;
     public InputActionMap player;
     private InputAction move;
-
+    
     public GameObject mainCamera;
 
     //movement fields
@@ -69,7 +69,7 @@ public class CharacterLocomotion : MonoBehaviour
 
         foreach (Transform head in gameObject.GetComponentsInChildren<Transform>())
         {
-            if (head.CompareTag("head")) head.gameObject.transform.GetChild(Random.Range(0, 2)).gameObject.SetActive(true);
+            if (head.CompareTag("head")) head.gameObject.transform.GetChild(Random.Range(0, 3)).gameObject.SetActive(true);
         }
         //Random Mesh
 

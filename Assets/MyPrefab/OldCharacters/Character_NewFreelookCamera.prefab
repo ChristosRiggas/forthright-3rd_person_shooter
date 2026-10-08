@@ -31079,6 +31079,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73edb5338b772e44abdc558839c37444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  ignorThis:
+    serializedVersion: 2
+    m_Bits: 0
   isFiring: 0
   fireRate: 15
   bulletSpeed: 1000
@@ -31088,12 +31092,17 @@ MonoBehaviour:
   tracerEffect: {fileID: 7908610316201212031, guid: 7fbab3cd33f59e44584b2578fc8ac133,
     type: 3}
   smallTrail0: {fileID: 2960131491636841169}
+  HitSprite: {fileID: 0}
   ammoCount: 60
   clipSize: 60
+  clipCount: 2
   raycastOrigin: {fileID: 2960131491371374374}
   raycastDestination: {fileID: 0}
   recoil: {fileID: 2960131489613974548}
   magazine: {fileID: 2959194724671507051}
+  levelManager: {fileID: 0}
+  ragdoll: {fileID: 0}
+  accumulatedTimeLimit: 0
 --- !u!114 &2960131489613974548
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31106,7 +31115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4ccfb33d49b3c41bdbca9ba2224a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  characterAiming: {fileID: 0}
   cameraShake: {fileID: 0}
   rigController: {fileID: 2960131489683218338}
   recoilPattern:
@@ -31124,6 +31133,7 @@ MonoBehaviour:
   - {x: 46, y: 50}
   - {x: 30, y: 50}
   duration: 0.1
+  mainCamera: {fileID: 0}
 --- !u!114 &2960131489613974549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31411,7 +31421,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2960131489683218338
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -31428,7 +31438,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2960131489683218339
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32014,7 +32025,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32229,7 +32240,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32340,7 +32351,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32545,7 +32556,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -32783,7 +32794,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -33206,7 +33217,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -33411,7 +33422,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -33964,7 +33975,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -34325,7 +34336,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &2902178645489988388
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -34342,7 +34353,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &2960131489860038083
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34375,10 +34387,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4b5732f533a7b40b3b42d98bb9ca80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: {x: 0, y: 0}
   turnSpeed: 100
-  aimLayer: {fileID: 2960131491194140205}
+  lookSpeed: 3
+  cameraLookAt: {fileID: 0}
+  xAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 0
+    m_AccelTime: 0
+    m_DecelTime: 0
+    m_InputAxisName: 
+    m_InputAxisValue: 0
+    m_InvertInput: 0
+    m_MinValue: 0
+    m_MaxValue: 0
+    m_Wrap: 0
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 0
+      m_RecenteringTime: 0
+      m_LegacyHeadingDefinition: 0
+      m_LegacyVelocityFilterStrength: 0
+  yAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 0
+    m_AccelTime: 0
+    m_DecelTime: 0
+    m_InputAxisName: 
+    m_InputAxisValue: 0
+    m_InvertInput: 0
+    m_MinValue: 0
+    m_MaxValue: 0
+    m_Wrap: 0
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 0
+      m_RecenteringTime: 0
+      m_LegacyHeadingDefinition: 0
+      m_LegacyVelocityFilterStrength: 0
   weaponReloading: {fileID: 2902178645489988389}
-  playerCamera: {fileID: 2960131489934702841}
 --- !u!114 &2960131491541388564
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34391,12 +34440,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f28233513bf444ab456a38303c7c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player:
+    m_Name: 
+    m_Id: 17413b63-2e00-4bfc-b76e-b6b672ea25bb
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
+  mainCamera: {fileID: 0}
   playerMask:
     serializedVersion: 2
     m_Bits: 2147483647
   groundChecks:
   - {fileID: 2960131491506993902}
   - {fileID: 2960131491083819232}
+  wallCheck: {fileID: 0}
+  userID: 0
+  levelManager: {fileID: 0}
   jumpHeight: 2
   gravity: 30
   stepDown: 0.0001
@@ -34419,6 +34478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d502d35d934b6c643874b9bd5460aa54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterLocomotion: {fileID: 0}
   rigController: {fileID: 2960131489683218338}
   AnimationEvents: {fileID: 2960131489683218339}
   weapon: {fileID: 2960131489613974555}

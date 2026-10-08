@@ -12115,7 +12115,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12866,7 +12866,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -12976,7 +12976,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &6033754166571878503
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -12993,7 +12993,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6033754166571878502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13184,7 +13185,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -13825,6 +13826,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73edb5338b772e44abdc558839c37444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  ignorThis:
+    serializedVersion: 2
+    m_Bits: 0
   isFiring: 0
   fireRate: 15
   bulletSpeed: 1000
@@ -13834,12 +13839,17 @@ MonoBehaviour:
   tracerEffect: {fileID: 7908610316201212031, guid: 7fbab3cd33f59e44584b2578fc8ac133,
     type: 3}
   smallTrail0: {fileID: 6033754166378028308}
+  HitSprite: {fileID: 0}
   ammoCount: 60
   clipSize: 60
+  clipCount: 2
   raycastOrigin: {fileID: 6033754166095741155}
   raycastDestination: {fileID: 0}
   recoil: {fileID: 6033754166787791825}
   magazine: {fileID: 6032966933329583534}
+  levelManager: {fileID: 0}
+  ragdoll: {fileID: 0}
+  accumulatedTimeLimit: 0
 --- !u!114 &6033754166787791825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13870,6 +13880,7 @@ MonoBehaviour:
   - {x: 46, y: 50}
   - {x: 30, y: 50}
   duration: 0.1
+  mainCamera: {fileID: 0}
 --- !u!114 &6033754166787791824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13990,7 +14001,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14436,7 +14447,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14458,6 +14469,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: -1
+  AutoEnableInputs: 1
   XYAxis: {fileID: -7189355339306312993, guid: cc3e486dd4c6741498a06c55ea73f758, type: 3}
   ZAxis: {fileID: 0}
 --- !u!1 &6033754167277115199
@@ -14689,7 +14701,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14767,7 +14779,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -14845,7 +14857,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -15080,7 +15092,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -15167,6 +15179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerIndex: -1
+  AutoEnableInputs: 1
   XYAxis: {fileID: -5630151704836100654, guid: ca9f5fa95ffab41fb9a615ab714db018, type: 3}
   ZAxis: {fileID: 0}
 --- !u!1 &6034689064570214955
@@ -15213,7 +15226,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &5975943005028181217
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -15230,7 +15243,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &6033754167066425862
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15316,12 +15330,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f28233513bf444ab456a38303c7c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player:
+    m_Name: 
+    m_Id: 35c9beca-923d-4c2e-a3b2-42a57c503af1
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
+  mainCamera: {fileID: 0}
   playerMask:
     serializedVersion: 2
     m_Bits: 2147483647
   groundChecks:
   - {fileID: 6033754166498716971}
   - {fileID: 6033754165857439525}
+  wallCheck: {fileID: 0}
+  userID: 0
+  levelManager: {fileID: 0}
   jumpHeight: 2
   gravity: 20
   stepDown: 0.0001
@@ -15344,6 +15368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d502d35d934b6c643874b9bd5460aa54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characterLocomotion: {fileID: 0}
   rigController: {fileID: 6033754166571878503}
   AnimationEvents: {fileID: 6033754166571878502}
   weapon: {fileID: 6033754166787791838}
