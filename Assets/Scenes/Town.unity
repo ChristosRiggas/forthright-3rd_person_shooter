@@ -217,6 +217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerManager: {fileID: 0}
   players: []
+  playerCount: 1
   GameisPaused: 0
   mainCamera: {fileID: 1629643214}
   pauseFirstButton: {fileID: 2016054591}
@@ -30851,6 +30852,7 @@ MonoBehaviour:
   StartCanvas: {fileID: 1097022578}
   score: {fileID: 1243170964}
   audioManager: {fileID: 1930648112}
+  levelManager: {fileID: 3590478}
 --- !u!1001 &1630800674
 PrefabInstance:
   m_ObjectHideFlags: 0

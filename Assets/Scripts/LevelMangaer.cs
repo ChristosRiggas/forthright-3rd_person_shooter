@@ -13,6 +13,7 @@ public class LevelMangaer : MonoBehaviour
 
     public PlayerManager playerManager;
     public GameObject[] players;
+    public int playerCount = 2;
     public bool GameisPaused = false;
     public GameObject mainCamera;
     public GameObject pauseFirstButton, optionsFirstButton;
@@ -36,22 +37,34 @@ public class LevelMangaer : MonoBehaviour
 
     void Update()
     {
-        if (players.Length == 2 && mainCamera.activeSelf == false) TestIfDeviceStateChange();
+        if (players.Length == playerCount && mainCamera.activeSelf == false) TestIfDeviceStateChange();
         if(audioManager == null)
         {
             FindAudioManager();
         }
 
-        if (players.Length == 2 && mainCamera.activeSelf == false)
+        if (players.Length == playerCount && mainCamera.activeSelf == false)
         {
             players = GameObject.FindGameObjectsWithTag("Player");
-            if (players[0].GetComponent<Health>().currentHealth <= 0f || players[1].GetComponent<Health>().currentHealth <= 0f)
+            foreach (GameObject player in players)
             {
-                foreach (GameObject player in players)
+                if (player.GetComponent<Health>().currentHealth <= 0f)
                 {
                     player.GetComponent<Ragdoll>().ActivateRagdoll();
+                    //PauseGame();
+                    //pauseMenu.transform.GetChild(3).gameObject.SetActive(true);
+                    //audioManager.PlaySFX(4);
+                    //audioManager.musicSlider.value = 0f;
+                    //audioManager.UpdateMusic();
                 }
             }
+            //if (players[0].GetComponent<Health>().currentHealth <= 0f || players[1].GetComponent<Health>().currentHealth <= 0f)
+            //{
+            //    foreach (GameObject player in players)
+            //    {
+            //        player.GetComponent<Ragdoll>().ActivateRagdoll();
+            //    }
+            //}
         }
     }
 
@@ -74,7 +87,7 @@ public class LevelMangaer : MonoBehaviour
                {
                    case InputDeviceChange.Disconnected:
                        // Device got unplugged.
-                       if (players.Length == 2 && mainCamera.activeSelf == false)
+                       if (players.Length == playerCount && mainCamera.activeSelf == false)
                        {   if(mainCamera.activeSelf == false) { 
                            PauseGame();
                            pauseMenu.transform.GetChild(4).gameObject.SetActive(true);
@@ -126,25 +139,28 @@ public class LevelMangaer : MonoBehaviour
 
     public void ResumeGame()
     {
-        if (players.Length == 2 && mainCamera.activeSelf == false)
+        if (players.Length == playerCount && mainCamera.activeSelf == false)
         {
             audioManager.PlaySFX(0);
 
-            if (!playerManager.players[0].hasMissingRequiredDevices && !playerManager.players[1].hasMissingRequiredDevices)
+            for (int i = 0; i < playerManager.players.Count; i++)
             {
-                //Eneble InputMapAsset Player
-                players = GameObject.FindGameObjectsWithTag("Player");
-
-                foreach (GameObject user in players)
+                if (!playerManager.players[i].hasMissingRequiredDevices)
                 {
-                    var cLoco = user.transform.GetComponentInChildren<CharacterLocomotion>();
-                    cLoco.player.Enable();
-                }
+                    //Eneble InputMapAsset Player
+                    players = GameObject.FindGameObjectsWithTag("Player");
 
-                Time.timeScale = 1;
-                Cursor.visible = false;
-                Cursor.lockState = CursorLockMode.Locked;
-                pauseMenu.SetActive(false);
+                    foreach (GameObject user in players)
+                    {
+                        var cLoco = user.transform.GetComponentInChildren<CharacterLocomotion>();
+                        cLoco.player.Enable();
+                    }
+
+                    Time.timeScale = 1;
+                    Cursor.visible = false;
+                    Cursor.lockState = CursorLockMode.Locked;
+                    pauseMenu.SetActive(false);
+                }    
             }
         }
     }
@@ -212,8 +228,12 @@ public class LevelMangaer : MonoBehaviour
 
     private void RespawnPlayers()
     {
-        playerManager.players[0].transform.position = playerManager.startingPoints[0].position;
-        playerManager.players[1].transform.position = playerManager.startingPoints[1].position;
+        for (int i = 0; i < playerManager.players.Count; i++)
+        {
+            playerManager.players[i].transform.position = playerManager.startingPoints[i].position;
+        }
+        //playerManager.players[0].transform.position = playerManager.startingPoints[0].position;
+        //playerManager.players[1].transform.position = playerManager.startingPoints[1].position;
 
         foreach (GameObject player in players)
         {

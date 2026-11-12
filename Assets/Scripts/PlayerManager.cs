@@ -37,7 +37,7 @@ public class PlayerManager : MonoBehaviour
     {
         players.Add(player);
 
-        if (players.Count == 2)
+        if (players.Count == levelManager.playerCount) // if this is the first player, get the players from the level manager
         {
             levelManager.GetPlayers();
         }

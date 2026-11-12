@@ -22,6 +22,8 @@ public class ToggleOnPlayerJoin : MonoBehaviour
     public GameObject score;
 
     public AudioManager audioManager;
+    [SerializeField]
+    private LevelMangaer levelManager;
 
     //public TextMeshProUGUI
     public Queue<int> userTemp = new Queue<int>();  //public List<int> userTemp = new List<int>(); //private int userTemp; 
@@ -92,10 +94,20 @@ public class ToggleOnPlayerJoin : MonoBehaviour
     {
         //canvas.SetActive(true);
 
-        if (usersCount == 2 && !users.players[0].hasMissingRequiredDevices && !users.players[1].hasMissingRequiredDevices) //all players joined with devices
+        if (usersCount == levelManager.playerCount)
         {
-            if (audioManager == null)
+            foreach (var user in users.players)
             {
+                if(user.hasMissingRequiredDevices)
+                {
+                    return;
+                }
+            }
+
+            //&& !users.players[0].hasMissingRequiredDevices && !users.players[1].hasMissingRequiredDevices) //all players joined with devices
+
+            if (audioManager == null)
+            {  
                 audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
             }
             audioManager.PlaySFX(0);
