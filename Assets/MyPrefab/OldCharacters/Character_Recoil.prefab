@@ -12004,7 +12004,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1316541101057129218
 Animator:
-  serializedVersion: 4
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -12021,7 +12021,8 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!54 &1375753846287238461
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -12084,9 +12085,47 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f4b5732f533a7b40b3b42d98bb9ca80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delta: {x: 0, y: 0}
   turnSpeed: 15
-  aimLayer: {fileID: 1375753846491676171}
-  playerCamera: {fileID: 1375753846340777097}
+  lookSpeed: 3
+  cameraLookAt: {fileID: 0}
+  xAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 0
+    m_AccelTime: 0
+    m_DecelTime: 0
+    m_InputAxisName: 
+    m_InputAxisValue: 0
+    m_InvertInput: 0
+    m_MinValue: 0
+    m_MaxValue: 0
+    m_Wrap: 0
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 0
+      m_RecenteringTime: 0
+      m_LegacyHeadingDefinition: 0
+      m_LegacyVelocityFilterStrength: 0
+  yAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 0
+    m_AccelTime: 0
+    m_DecelTime: 0
+    m_InputAxisName: 
+    m_InputAxisValue: 0
+    m_InvertInput: 0
+    m_MinValue: 0
+    m_MaxValue: 0
+    m_Wrap: 0
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 0
+      m_RecenteringTime: 0
+      m_LegacyHeadingDefinition: 0
+      m_LegacyVelocityFilterStrength: 0
+  weaponReloading: {fileID: 0}
 --- !u!114 &1375753846287238450
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12099,6 +12138,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7f28233513bf444ab456a38303c7c4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player:
+    m_Name: 
+    m_Id: bc1d8ab5-b599-49f5-9e71-d15c068c0455
+    m_Asset: {fileID: 0}
+    m_Actions: []
+    m_Bindings: []
+  mainCamera: {fileID: 0}
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  groundChecks: []
+  wallCheck: {fileID: 0}
+  userID: 0
+  levelManager: {fileID: 0}
+  jumpHeight: 3
+  gravity: 20
+  stepDown: 0.3
+  airControl: 0
+  jumpDamp: 0
+  groundSpeed: 0
+  pushPower: 0
+  forceMagnitude: 0
+  isJumping: 0
+  isGrounded: 0
 --- !u!1 &1374781713446322232
 GameObject:
   m_ObjectHideFlags: 0
@@ -12358,7 +12421,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -13291,7 +13354,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -13669,7 +13732,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -13810,6 +13873,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73edb5338b772e44abdc558839c37444, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 5
+  ignorThis:
+    serializedVersion: 2
+    m_Bits: 0
   isFiring: 0
   fireRate: 25
   bulletSpeed: 1000
@@ -13818,9 +13885,18 @@ MonoBehaviour:
   hitEffect: {fileID: 1920486727832834143}
   tracerEffect: {fileID: 7908610316201212031, guid: 7fbab3cd33f59e44584b2578fc8ac133,
     type: 3}
+  smallTrail0: {fileID: 0}
+  HitSprite: {fileID: 0}
+  ammoCount: 30
+  clipSize: 30
+  clipCount: 2
   raycastOrigin: {fileID: 1375753846587055872}
   raycastDestination: {fileID: 0}
   recoil: {fileID: 1375753848084366386}
+  magazine: {fileID: 0}
+  levelManager: {fileID: 0}
+  ragdoll: {fileID: 0}
+  accumulatedTimeLimit: 0
 --- !u!114 &1375753848084366386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13833,8 +13909,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c4ccfb33d49b3c41bdbca9ba2224a0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerCamera: {fileID: 0}
+  characterAiming: {fileID: 0}
   cameraShake: {fileID: 0}
+  rigController: {fileID: 0}
   recoilPattern:
   - {x: 100, y: 50}
   - {x: 60, y: 0}
@@ -13850,6 +13927,7 @@ MonoBehaviour:
   - {x: 46, y: 0}
   - {x: 30, y: 50}
   duration: 0.1
+  mainCamera: {fileID: 0}
 --- !u!114 &1375753848084366387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13972,7 +14050,7 @@ MonoBehaviour:
     ModeOverride: 0
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
